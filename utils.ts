@@ -6,7 +6,10 @@ export function sendResponseCode(resp:any, code:number) {
 }
 
 export function sendResponseShortenedUrl(resp:any, shortCode:string) {
-    resp(new Response(JSON.stringify({shortUrl: SERVICE_DOMAIN+shortCode}), {status: Status.OK}));
+    resp(new Response(JSON.stringify({shortUrl: SERVICE_DOMAIN+shortCode}), 
+                     {status: Status.OK,
+                      headers: {[HEADER_CONTENT_TYPE]: 'application/json'}
+                    }));
 }
 
 export async function sendResponseRedirect(resp:any, target:string) {
